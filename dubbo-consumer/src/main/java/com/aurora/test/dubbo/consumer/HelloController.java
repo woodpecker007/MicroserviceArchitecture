@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @Reference
+    // 设置降级内容，容错模式
+    @Reference(mock = "com.aurora.test.dubbo.consumer.MockHelloServiceImpl", cluster = "failfast")
+//    @Reference
     private HelloService helloService;
 
     @GetMapping("greet")
